@@ -111,7 +111,12 @@ func (mbox *Mailbox) DeleteEmails(seqs []uint32) error {
 	if err != nil {
 		return err
 	}
-
+	
+	err = imapClient.Expunge(nil)
+	if err != nil {
+		return err
+	}
+	
 	return nil
 }
 
