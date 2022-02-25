@@ -107,7 +107,7 @@ func (mbox *Mailbox) DeleteEmails(seqs []uint32) error {
 	seqSet.AddNum(seqs...)
 
 	item := imap.FormatFlagsOp(imap.AddFlags, true)
-	err = imapClient.Store(seqSet, item, imap.DeletedFlag, nil)
+	err = imapClient.Store(seqSet, item, []interface{}{imap.DeletedFlag}, nil)
 	if err != nil {
 		return err
 	}
